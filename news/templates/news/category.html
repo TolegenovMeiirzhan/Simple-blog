@@ -1,0 +1,64 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}
+ {{ block.super }} :: {{ category.title }}
+{% endblock %}
+
+    {% block sidebar %}
+<!-- <ul class="list-group"> -->
+
+<!-- {% for item in categories %} -->
+<!-- {% if item.title != category.title %} -->
+<!-- <ul class="list-group"> -->
+<!--     <li class="list-group-item d-flex justify-content-between align-items-center"> -->
+<!--      <a href="{% url 'category' item.pk %}" class="" >{{ item.title|title }} -->
+<!--   </a><span class="badge bg-primary rounded-pill">{{ item.title|title }}</span> -->
+<!--       <span class="badge bg-primary rounded-pill">12</span> -->
+<!--     </li> -->
+
+<!--     {% else %} -->
+<!--       <li class="list-group-item d-flex justify-content-between align-items-center"> -->
+<!--   <a href="{% url 'category' category.pk %}" class="" >Main category: {{ category.title|title }} -->
+<!--   </li> -->
+<!-- <li class="list-group-item d-flex justify-content-between align-items-center"> -->
+<!--      <a href="{% url 'category' item.pk %}" class="" >{{ category.title|title }} -->
+<!--   </a><span class="badge bg-primary rounded-pill">{{ item.title|title }}</span> -->
+<!--       <span class="badge bg-primary rounded-pill">{{ category.title|title }}</span> -->
+<!--     </li> -->
+
+<!-- {% endif %} -->
+<!--   </ul> -->
+<!--     </ul> -->
+<!-- {% endfor %} -->
+{% include 'inc/_sidebar.html' %}
+    {% endblock %}
+
+        {% block content %}
+
+{% for item in news %}
+<div class="card mb-3">
+ {% if item.photo %}
+  <img src="{{ item.photo.url }} " class="card-img-top" alt="">
+  {% else %}
+  <img src="https://phonoteka.org/uploads/posts/2021-04/1619811782_5-phonoteka_org-p-novosti-zastavka-fon-5.jpg" class="card-img-top" alt="">
+  {% endif %}
+
+  <div class="card-body">
+    <h5 class="card-title">{{ item.title }}</h5>
+    <p class="card-text"><small class="text-muted"> <a
+    href="{% url 'category' item.category.pk %}"> {{ item.category }}  </a>
+    </small></p>
+    <p class="card-text">{{item.content|truncatewords:50  }}</p>
+    <p class="card-text"><small class="text-muted">   Posted: {{ item.created_at|date:'Y.d.m H:i' }} <br>
+    {{ item.created_at|timesince }} has passed.
+    </small></p>
+        <a href="{{ item.get_absolute_url }}" class="btn btn-primary" role="button">Read More</a>
+  </div>
+</div>
+
+{% endfor %}
+
+
+        {% endblock %}

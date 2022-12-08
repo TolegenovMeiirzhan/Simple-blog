@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+    {% block title %}
+        Register: {{ block.super }}
+    {% endblock %}
+
+{% comment %}
+
+    {% block sidebar %}
+        {% include 'inc/_sidebar.html' %}
+    {% endblock %}
+
+{% endcomment %}
+
+{% block content %}
+<h3 class="pb-4 mb-4 fst-italic border-bottom">
+    Register
+</h3>
+    <form method = 'POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit' class ='btn btn-primary btn-block'>Register</button>
+
+    </form>
+
+
+{% endblock %}

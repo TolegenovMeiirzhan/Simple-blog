@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Send email: {{block.super}}
+{% endblock %}
+
+
+{% block sidebar %}
+
+    {% include 'inc/_sidebar.html' %}
+
+{% endblock %}
+
+{% block content %}
+<h3 class="pb-4 mb-4 fst-italic border-bottom">
+    Send Message
+</h3>
+<form method='POST'>
+{% csrf_token %}
+{{ form.as_p }}
+
+<button type='submit' class='btn btn-primary btn-block'>Send</button>
+</form>
+
+{% endblock %}

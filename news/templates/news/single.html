@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{{ block.super }}::{{ news_item.title|title }}
+
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+{% block content %}
+<div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        {{ news_item.title|title }}
+      </h3>
+       {% if news_item.photo %}
+  <img src="{{ news_item.photo.url }} " width=950 alt="">
+  {% else %}
+  <img src="https://phonoteka.org/uploads/posts/2021-04/1619811782_5-phonoteka_org-p-novosti-zastavka-fon-5.jpg" class="card-img-top" width="350">
+  {% endif %}
+      <article class="blog-post">
+
+        <h2 class="blog-post-title mb-2 mt-2">Content:</h2>
+        <p class="blog-post-meta">{{ news_item.created_at|date:'d.m.Y H:i' }}<p>  Category:{{ news_item.category }} </p></p>
+
+        <p>{{ news_item.content|safe|linebreaks  }}</p>
+<br>
+        <p>Changed at: {{news_item.updated_at|date:'H:i d.m.Y'}} </p>
+        <br>
+
+
+
+    </div>
+
+    {% endblock %}

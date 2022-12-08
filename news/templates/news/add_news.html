@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{{ block.super }}::Add News
+
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+{% block content %}
+<div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        Create News
+      </h3>
+      <form action="{% url 'add_news' %}" method="POST">
+{% csrf_token %}
+        <br>
+{{ form.as_p }}
+
+<button type='submit' class='btn btn-primary btn-block'>Add News</button>
+</form>
+    </div>
+
+    {% endblock %}
