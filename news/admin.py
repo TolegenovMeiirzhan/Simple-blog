@@ -42,5 +42,5 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('title', )
 
 admin.site.register(Category, CategoryAdmin)
-admin.site.site_header = 'Meiirzhan Top'
-admin.site.site_title = 'Meiirzhan Top'
+admin.site.site_header = 'Blog Top'
+admin.site.site_title = 'Blog Top'
